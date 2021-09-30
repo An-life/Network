@@ -1,26 +1,71 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {Header} from './Components/Header/Header';
+import {Nav} from './Components/Nav/Nav';
+import {Profile} from './Components/MainContent/Profile/Profile';
+import {Dialogs} from './Components/MainContent/Dialogs/Dialogs';
+import {Route} from 'react-router';
+import {BrowserRouter} from 'react-router-dom';
+import {News} from './Components/MainContent/News/News';
+import {Music} from './Components/MainContent/Music/Music';
+import {Settings} from './Components/MainContent/Settings/Settings';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+type AppPropsType={
+    state:StateType
+    addPost:()=>void
+    updatePost:(newText:string)=>void
+}
+ export type StateType ={
+    postData:PostDataType
+    messages: MessagesType
+}
+export type PostDataType={
+    posts:Array<PostType>
+    newPostText:string
+}
+type PostType={
+    id:number,
+    post:string,
+    like:number
+}
+type MessagesType = {
+    dialogsData: Array<DialogsType>,
+    messageData: Array<MessageType>
+}
+type DialogsType = {
+    id: number,
+    name: string
+}
+type MessageType = {
+    id: number,
+    message: string
+}
+
+function App(props:AppPropsType) {
+
+    return (<BrowserRouter>
+            <div className="App">
+                <Header/>
+                <div className="InfContainer">
+                    <Nav/>
+                    <div className="appMainContent">
+                        <Route path="/profile" render={()=><Profile postData={props.state.postData} addPost={props.addPost} updatePost={props.updatePost} />}/>
+                        <Route path="/dialogs" render={()=><Dialogs dialogsData={props.state.messages.dialogsData}
+                                                                    messageData={props.state.messages.messageData}/>}/>
+                        <Route path="/news" render={()=><News/>}/>
+                        <Route path="/music" render={()=><Music/>}/>
+                        <Route path="/settings" render={()=><Settings/>}/>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </BrowserRouter>
+
+    );
 }
 
 export default App;

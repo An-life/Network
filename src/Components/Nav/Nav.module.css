@@ -1,0 +1,16 @@
+.Nav{
+    width: 200px;
+    background: linear-gradient(to top ,#5cb0be , #000000);
+    color: floralwhite;
+    padding: 20px;
+    font-size: 20px;
+    text-decoration: none;
+}
+.Nav a{
+    color: floralwhite;
+    text-decoration: none;
+}
+.Nav a.activeLink {
+    color: #9fe6ec;
+    text-decoration: none;
+}
