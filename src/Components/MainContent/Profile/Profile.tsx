@@ -2,12 +2,12 @@ import React from 'react';
 import s from './Profile.module.css'
 import {MyPost} from './MyPost';
 import {PostDataType} from '../../../App';
+import {ActionType} from '../../../redux/state';
 
 
 type PropsType={
     postData:PostDataType
-    addPost:()=>void
-    updatePost:(newText:string)=>void
+    dispatch:(action:ActionType)=>void
 }
 type PostType={
     id:number,
@@ -28,7 +28,7 @@ export const Profile=(props:PropsType)=>{
         <div>
             Ava+Discription
         </div>
-            <MyPost postData={props.postData} addPost={props.addPost} updatePost={props.updatePost}/>
+            <MyPost postData={props.postData} dispatch={props.dispatch}/>
         </div>
     )
 }

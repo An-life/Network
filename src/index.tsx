@@ -4,14 +4,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App, {StateType} from './App';
 import {store} from './redux/state';
-type AppPropsType={
-    state:StateType
-    addPost:()=>void
-    updatePost:(newText:string)=>void
-}
+
 export let renderTree=()=>{ReactDOM.render(
     <React.StrictMode>
-        < App state={store.getState()} addPost={store.addPost.bind(store)}  updatePost={store.updatePost.bind(store)}/>
+        < App state={store.getState()} dispatch={store.dispatch.bind(store)} />
     </React.StrictMode>,
     document.getElementById('root')
 )

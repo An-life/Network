@@ -1,4 +1,7 @@
-
+export type ActionType={
+    type:'ADD_POST'|'UPDATE_POST'
+    newText:string
+}
  export let store={
      _state : {
          postData:{ posts:[
@@ -31,21 +34,21 @@
      },
      callbackTree(){
      },
-     addPost(){
-         let postMessage={
-             id: 5,
-             post:this._state.postData.newPostText,
-             like: 3
+     dispatch(action:ActionType){
+         if(action.type==='ADD_POST'){
+             let postMessage={
+                 id: 5,
+                 post:action.newText,
+                 like: 3
+             }
+             this._state.postData.posts.push(postMessage);
+             this._state.postData.newPostText='';
+             this.callbackTree();
+         }else if(action.type==='UPDATE_POST'){
+             this._state.postData.newPostText=action.newText;
+             this.callbackTree();
          }
-         this._state.postData.posts.push(postMessage);
-         this._state.postData.newPostText='';
-         this.callbackTree();
      },
-     updatePost(newText:string){
-        this._state.postData.newPostText=newText;
-         this.callbackTree();
-     },
-
      subsriber(observer:()=>void){
          this.callbackTree=observer;
      }

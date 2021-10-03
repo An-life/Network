@@ -9,12 +9,12 @@ import {BrowserRouter} from 'react-router-dom';
 import {News} from './Components/MainContent/News/News';
 import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
+import {ActionType} from './redux/state';
 
 
 type AppPropsType={
     state:StateType
-    addPost:()=>void
-    updatePost:(newText:string)=>void
+    dispatch:(action:ActionType)=>void
 }
  export type StateType ={
     postData:PostDataType
@@ -50,7 +50,7 @@ function App(props:AppPropsType) {
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">
-                        <Route path="/profile" render={()=><Profile postData={props.state.postData} addPost={props.addPost} updatePost={props.updatePost} />}/>
+                        <Route path="/profile" render={()=><Profile postData={props.state.postData} dispatch={props.dispatch} />}/>
                         <Route path="/dialogs" render={()=><Dialogs dialogsData={props.state.messages.dialogsData}
                                                                     messageData={props.state.messages.messageData}/>}/>
                         <Route path="/news" render={()=><News/>}/>
