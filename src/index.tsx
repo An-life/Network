@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App, {StateType} from './App';
-import {addPost, state, subsriber, updatePost} from './redux/state';
+import {store} from './redux/state';
 type AppPropsType={
     state:StateType
     addPost:()=>void
@@ -11,14 +11,14 @@ type AppPropsType={
 }
 export let renderTree=()=>{ReactDOM.render(
     <React.StrictMode>
-        < App state={state} addPost={addPost}  updatePost={updatePost}/>
+        < App state={store.getState()} addPost={store.addPost.bind(store)}  updatePost={store.updatePost.bind(store)}/>
     </React.StrictMode>,
     document.getElementById('root')
 )
 ;}
 
 renderTree();
-subsriber(renderTree);
+store.subsriber(renderTree);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
