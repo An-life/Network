@@ -32,6 +32,7 @@ type PostType={
 type MessagesType = {
     dialogsData: Array<DialogsType>,
     messageData: Array<MessageType>
+    newMessage:string
 }
 type DialogsType = {
     id: number,
@@ -53,6 +54,7 @@ function App(props:AppPropsType) {
                         <Route path="/profile" render={()=><Profile postData={props.state.postData} dispatch={props.dispatch} />}/>
                         <Route path="/dialogs" render={()=><Dialogs dialogsData={props.state.messages.dialogsData}
                                                                     messageData={props.state.messages.messageData}
+                                                                    newMessage={props.state.messages.newMessage}
                                                                     dispatch={props.dispatch}
                         />}/>
                         <Route path="/news" render={()=><News/>}/>
