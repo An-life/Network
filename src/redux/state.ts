@@ -1,5 +1,5 @@
 export type ActionType={
-    type:'ADD_POST'|'UPDATE_POST'
+    type:'ADD_POST'|'UPDATE_POST'|'ADD_MESSAGE'|'SEND_MESSAGE'
     newText:string
 }
  export let store={
@@ -26,13 +26,15 @@ export type ActionType={
                  {id: 3, message: 'No'},
                  {id: 4, message: 'Love'},
                  {id: 5, message: 'Look'},
-             ]
+             ],
+             newMessage:''
+
          }
      },
      getState(){
          return this._state
      },
-     callbackTree(){
+     _callbackTree(){
      },
      dispatch(action:ActionType){
          if(action.type==='ADD_POST'){
@@ -43,14 +45,21 @@ export type ActionType={
              }
              this._state.postData.posts.push(postMessage);
              this._state.postData.newPostText='';
-             this.callbackTree();
+             this._callbackTree();
          }else if(action.type==='UPDATE_POST'){
              this._state.postData.newPostText=action.newText;
-             this.callbackTree();
-         }
-     },
+             this._callbackTree();
+         }else if(action.type==='ADD_MESSAGE'){
+             this._state.messages.newMessage=action.newText;
+             this._callbackTree();
+         }else if(action.type==='SEND_MESSAGE'){
+            let newMessageText= this._state.messages.newMessage;
+             this._state.messages.newMessage=''
+             this._state.messages.messageData.push({id: 1, message: newMessageText});
+             this._callbackTree();
+     }},
      subsriber(observer:()=>void){
-         this.callbackTree=observer;
+         this._callbackTree=observer;
      }
 
  }
@@ -60,6 +69,10 @@ export const updatePostAC=(newText:string):ActionType=>{
 }
 export const addPostAC=(newText:string):ActionType=>{
     return {type:'ADD_POST',newText:newText}}
+export const addMessageAC=(newText:string):ActionType=>{
+    return {type:'ADD_MESSAGE',newText:newText}}
+export const sendMessageAC=(newText:string):ActionType=>{
+    return {type:'SEND_MESSAGE',newText:newText}}
 
 
 
