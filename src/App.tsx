@@ -29,7 +29,7 @@ type PostType={
     post:string,
     like:number
 }
-type MessagesType = {
+export type MessagesType = {
     dialogsData: Array<DialogsType>,
     messageData: Array<MessageType>
     newMessage:string

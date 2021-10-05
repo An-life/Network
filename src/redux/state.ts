@@ -1,3 +1,6 @@
+import {profileReduser} from './profileReduser';
+import {messageReduser} from './messageReduser';
+
 export type ActionType={
     type:'ADD_POST'|'UPDATE_POST'|'ADD_MESSAGE'|'SEND_MESSAGE'
     newText:string
@@ -37,42 +40,17 @@ export type ActionType={
      _callbackTree(){
      },
      dispatch(action:ActionType){
-         if(action.type==='ADD_POST'){
-             let postMessage={
-                 id: 5,
-                 post:action.newText,
-                 like: 3
-             }
-             this._state.postData.posts.push(postMessage);
-             this._state.postData.newPostText='';
+         this._state.postData=profileReduser(this._state.postData,action);
+         this._state.messages=messageReduser(this._state.messages,action);
              this._callbackTree();
-         }else if(action.type==='UPDATE_POST'){
-             this._state.postData.newPostText=action.newText;
-             this._callbackTree();
-         }else if(action.type==='ADD_MESSAGE'){
-             this._state.messages.newMessage=action.newText;
-             this._callbackTree();
-         }else if(action.type==='SEND_MESSAGE'){
-            let newMessageText= this._state.messages.newMessage;
-             this._state.messages.newMessage=''
-             this._state.messages.messageData.push({id: 1, message: newMessageText});
-             this._callbackTree();
-     }},
+     },
      subsriber(observer:()=>void){
          this._callbackTree=observer;
      }
-
  }
 
-export const updatePostAC=(newText:string):ActionType=>{
-    return {type:'UPDATE_POST',newText:newText}
-}
-export const addPostAC=(newText:string):ActionType=>{
-    return {type:'ADD_POST',newText:newText}}
-export const addMessageAC=(newText:string):ActionType=>{
-    return {type:'ADD_MESSAGE',newText:newText}}
-export const sendMessageAC=(newText:string):ActionType=>{
-    return {type:'SEND_MESSAGE',newText:newText}}
+
+
 
 
 
