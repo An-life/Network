@@ -55,7 +55,11 @@ export type ActionType={
 
  }
 
-
+export const updatePostAC=(newText:string):ActionType=>{
+    return {type:'UPDATE_POST',newText:newText}
+}
+export const addPostAC=(newText:string):ActionType=>{
+    return {type:'ADD_POST',newText:newText}}
 
 
 
