@@ -1,7 +1,15 @@
 import {ActionType} from './state';
 import {PostDataType} from '../App';
 
-export const  profileReduser=(state: PostDataType,action:ActionType)=>{
+let initialState={
+     posts:[
+            {id: 1, post: 'Hi!', like: 3},
+            {id: 2, post: 'Yo!', like: 4},
+            {id: 3, post: 'Like!', like: 1}
+        ],
+        newPostText:''
+}
+export const  profileReduser=(state=initialState,action:ActionType):PostDataType=>{
     if(action.type==='ADD_POST'){
         let postMessage={
             id: 5,

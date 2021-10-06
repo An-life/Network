@@ -8,6 +8,7 @@ import {ActionType} from '../../../redux/state';
 type PropsType={
     postData:PostDataType
     dispatch:(action:ActionType)=>void
+
 }
 type PostType={
     id:number,

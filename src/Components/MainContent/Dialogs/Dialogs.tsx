@@ -2,14 +2,13 @@ import React, {ChangeEvent, ChangeEventHandler} from 'react';
 import s from './Dialogs.module.css'
 import {DialogsItems} from './DialogsItems';
 import {Messages} from './Messages';
-import {ActionType} from '../../../redux/state';
 import {addMessageAC, sendMessageAC} from '../../../redux/messageReduser';
+import {ActionType} from '../../../redux/state';
+import {MessagesType} from '../../../App';
 
 type PropsType = {
-    dialogsData: Array<DialogsType>,
-    messageData: Array<MessageType>
-    newMessage:string
-    dispatch:(actoin:ActionType)=>void
+    messageData:MessagesType
+    dispatch:(action:ActionType)=>void
 }
 type DialogsType = {
     id: number,
@@ -22,9 +21,9 @@ type MessageType = {
 
 export const Dialogs = (props: PropsType) => {
 
-    let dialogElements = props.dialogsData.map(d => <DialogsItems id={d.id} name={d.name}/>)
-    let messageElement = props.messageData.map(m => <Messages message={m.message}/>)
-    let newText=props.newMessage;
+    let dialogElements = props.messageData.dialogsData.map(d => <DialogsItems id={d.id} name={d.name}/>)
+    let messageElement = props.messageData.messageData.map(m => <Messages message={m.message}/>)
+    let newText=props.messageData.newMessage;
 
     let addMessage = () => {
         props.dispatch(sendMessageAC(newText));
@@ -32,7 +31,6 @@ export const Dialogs = (props: PropsType) => {
    let messgeChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
         let newText=e.currentTarget.value;
        props.dispatch(addMessageAC(newText));
-
 
    }
 

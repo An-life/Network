@@ -10,10 +10,12 @@ import {News} from './Components/MainContent/News/News';
 import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
 import {ActionType} from './redux/state';
+import {AppStateType, StoreType} from './redux/StoreRedux';
 
 
 type AppPropsType={
-    state:StateType
+    store:StoreType
+    state:AppStateType
     dispatch:(action:ActionType)=>void
 }
  export type StateType ={
@@ -43,6 +45,8 @@ type MessageType = {
     message: string
 }
 
+
+
 function App(props:AppPropsType) {
 
     return (<BrowserRouter>
@@ -51,24 +55,15 @@ function App(props:AppPropsType) {
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">
-                        <Route path="/profile" render={()=><Profile postData={props.state.postData} dispatch={props.dispatch} />}/>
-                        <Route path="/dialogs" render={()=><Dialogs dialogsData={props.state.messages.dialogsData}
-                                                                    messageData={props.state.messages.messageData}
-                                                                    newMessage={props.state.messages.newMessage}
-                                                                    dispatch={props.dispatch}
-                        />}/>
+                        <Route path="/profile" render={()=><Profile  postData={props.state.postData} dispatch={props.dispatch} />}/>
+                        <Route path="/dialogs" render={()=><Dialogs messageData={props.state.messageData} dispatch={props.dispatch}/>}/>
                         <Route path="/news" render={()=><News/>}/>
                         <Route path="/music" render={()=><Music/>}/>
                         <Route path="/settings" render={()=><Settings/>}/>
-
-
-
-
                     </div>
                 </div>
             </div>
         </BrowserRouter>
-
     );
 }
 

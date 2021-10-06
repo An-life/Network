@@ -1,10 +1,11 @@
-import {profileReduser} from './profileReduser';
-import {messageReduser} from './messageReduser';
-
 export type ActionType={
     type:'ADD_POST'|'UPDATE_POST'|'ADD_MESSAGE'|'SEND_MESSAGE'
     newText:string
 }
+/*import {profileReduser} from './profileReduser';
+import {messageReduser} from './messageReduser';
+
+
  export let store={
      _state : {
          postData:{ posts:[
@@ -47,7 +48,7 @@ export type ActionType={
      subsriber(observer:()=>void){
          this._callbackTree=observer;
      }
- }
+ }*/
 
 
 
