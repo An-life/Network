@@ -4,6 +4,7 @@ import {NewPost} from './NewPost';
 import {Posts} from './Posts';
 import {PostDataType} from '../../../App';
 import {ActionType} from '../../../redux/state';
+import {NewPostContainer} from './NewPostContainer';
 type PropsType={
     postData:PostDataType
     dispatch:(action:ActionType)=>void
@@ -18,7 +19,7 @@ export const MyPost = (props:PropsType) => {
     let postElements = props.postData.posts.map(p => <Posts post={p.post} like={p.like}/>)
     return (<div>
             <h2>My posts</h2>
-            <NewPost  newPostText={props.postData.newPostText}  dispatch={props.dispatch}/>
+            <NewPostContainer  newPostText={props.postData.newPostText}  dispatch={props.dispatch}/>
             {postElements}
         </div>
 

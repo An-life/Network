@@ -1,27 +1,26 @@
 import React, {ChangeEvent} from 'react';
-import s from './NewPost.module.css'
 import {ActionType} from '../../../redux/state';
 import {addPostAC, updatePostAC} from '../../../redux/profileReduser';
 
-type NewPostPropsType={
-
+type NewPostContainerPropsType = {
+    newPostText: string
+    dispatch:(action:ActionType)=>void
 }
 
 
-export const NewPost = (props: NewPostPropsType) => {
+export const NewPostContainer = (props: NewPostContainerPropsType) => {
 
     let addPost = () => {
-let newText=props.newPostText
+        let newText=props.newPostText
         props.dispatch(addPostAC(newText));
     }
     let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-         let newText=e.currentTarget.value;
+        let newText=e.currentTarget.value;
         props.dispatch(updatePostAC(newText));
     }
 
     return (<div>
-            <textarea  onChange={onPostChange} value={props.newPostText}></textarea>
-            <span><button onClick={addPost}>Send</button></span>
+            <NewPost />
         </div>
     )
 }
