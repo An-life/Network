@@ -3,7 +3,6 @@ import './App.css';
 import {Header} from './Components/Header/Header';
 import {Nav} from './Components/Nav/Nav';
 import {Profile} from './Components/MainContent/Profile/Profile';
-import {Dialogs} from './Components/MainContent/Dialogs/Dialogs';
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
 import {News} from './Components/MainContent/News/News';
@@ -11,6 +10,7 @@ import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
 import {ActionType} from './redux/state';
 import {AppStateType, StoreType} from './redux/StoreRedux';
+import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
 
 
 type AppPropsType={
@@ -56,7 +56,7 @@ function App(props:AppPropsType) {
                     <Nav/>
                     <div className="appMainContent">
                         <Route path="/profile" render={()=><Profile  store={props.store} />}/>
-                        <Route path="/dialogs" render={()=><Dialogs messageData={props.state.messageData} dispatch={props.dispatch}/>}/>
+                        <Route path="/dialogs" render={()=><DialogContainer  store={props.store}/>}/>
                         <Route path="/news" render={()=><News/>}/>
                         <Route path="/music" render={()=><Music/>}/>
                         <Route path="/settings" render={()=><Settings/>}/>

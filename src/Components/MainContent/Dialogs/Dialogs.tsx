@@ -7,8 +7,10 @@ import {ActionType} from '../../../redux/state';
 import {MessagesType} from '../../../App';
 
 type PropsType = {
-    messageData:MessagesType
-    dispatch:(action:ActionType)=>void
+    addMessage:()=>void
+    messgeChange:(newText:string)=>void
+    messageData: MessagesType
+
 }
 type DialogsType = {
     id: number,
@@ -26,11 +28,11 @@ export const Dialogs = (props: PropsType) => {
     let newText=props.messageData.newMessage;
 
     let addMessage = () => {
-        props.dispatch(sendMessageAC(newText));
+        props.addMessage();
     }
    let messgeChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
         let newText=e.currentTarget.value;
-       props.dispatch(addMessageAC(newText));
+       props.messgeChange(newText);
 
    }
 
