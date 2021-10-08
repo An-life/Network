@@ -55,7 +55,7 @@ function App(props:AppPropsType) {
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">
-                        <Route path="/profile" render={()=><Profile  postData={props.state.postData} dispatch={props.dispatch} />}/>
+                        <Route path="/profile" render={()=><Profile  store={props.store} />}/>
                         <Route path="/dialogs" render={()=><Dialogs messageData={props.state.messageData} dispatch={props.dispatch}/>}/>
                         <Route path="/news" render={()=><News/>}/>
                         <Route path="/music" render={()=><Music/>}/>

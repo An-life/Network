@@ -1,26 +1,26 @@
 import React, {ChangeEvent} from 'react';
 import {ActionType} from '../../../redux/state';
 import {addPostAC, updatePostAC} from '../../../redux/profileReduser';
+import {NewPost} from './NewPost';
+import {StoreType} from '../../../redux/StoreRedux';
 
 type NewPostContainerPropsType = {
-    newPostText: string
-    dispatch:(action:ActionType)=>void
+   store:StoreType
 }
 
 
 export const NewPostContainer = (props: NewPostContainerPropsType) => {
-
+    let state=props.store.getState();
     let addPost = () => {
-        let newText=props.newPostText
-        props.dispatch(addPostAC(newText));
+        let newText=state.postData.newPostText
+        props.store.dispatch(addPostAC(newText));
     }
-    let onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let newText=e.currentTarget.value;
-        props.dispatch(updatePostAC(newText));
+    let onPostChange = (newText:string) => {
+        props.store.dispatch(updatePostAC(newText));
     }
 
     return (<div>
-            <NewPost />
+            <NewPost addPost={addPost}  ubdatePost={ onPostChange} newPostText={state.postData.newPostText}/>
         </div>
     )
 }
