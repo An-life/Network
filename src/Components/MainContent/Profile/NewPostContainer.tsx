@@ -3,24 +3,27 @@ import {ActionType} from '../../../redux/state';
 import {addPostAC, updatePostAC} from '../../../redux/profileReduser';
 import {NewPost} from './NewPost';
 import {StoreType} from '../../../redux/StoreRedux';
-
-type NewPostContainerPropsType = {
-   store:StoreType
-}
+import StoreContext from '../../../StoreContext';
 
 
-export const NewPostContainer = (props: NewPostContainerPropsType) => {
-    let state=props.store.getState();
-    let addPost = () => {
-        let newText=state.postData.newPostText
-        props.store.dispatch(addPostAC(newText));
-    }
-    let onPostChange = (newText:string) => {
-        props.store.dispatch(updatePostAC(newText));
-    }
+export const NewPostContainer = () => {
 
     return (<div>
-            <NewPost addPost={addPost}  ubdatePost={ onPostChange} newPostText={state.postData.newPostText}/>
+            <StoreContext.Consumer>
+                {
+                (store)=>{
+                    let state= store.getState();
+                    let addPost = () => {
+                        let newText=state.postData.newPostText
+                       store.dispatch(addPostAC(newText));
+                    }
+                    let onPostChange = (newText:string) => {
+                        store.dispatch(updatePostAC(newText));
+                    }
+                   return <NewPost addPost={addPost}  ubdatePost={ onPostChange} newPostText={state.postData.newPostText}/>}
+
+            }
+            </StoreContext.Consumer>
         </div>
     )
 }

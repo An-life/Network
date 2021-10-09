@@ -47,7 +47,7 @@ type MessageType = {
 
 
 
-function App(props:AppPropsType) {
+function App() {
 
     return (<BrowserRouter>
             <div className="App">
@@ -55,8 +55,8 @@ function App(props:AppPropsType) {
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">
-                        <Route path="/profile" render={()=><Profile  store={props.store} />}/>
-                        <Route path="/dialogs" render={()=><DialogContainer  store={props.store}/>}/>
+                        <Route path="/profile" render={()=><Profile  />}/>
+                        <Route path="/dialogs" render={()=><DialogContainer />}/>
                         <Route path="/news" render={()=><News/>}/>
                         <Route path="/music" render={()=><Music/>}/>
                         <Route path="/settings" render={()=><Settings/>}/>
