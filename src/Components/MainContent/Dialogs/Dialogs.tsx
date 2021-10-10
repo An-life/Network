@@ -12,15 +12,15 @@ type PropsType = {
 
 export const Dialogs = (props: PropsType) => {
 
-    let dialogElements = props.messageData.dialogsData.map(d => <DialogsItems id={d.id} name={d.name}/>)
-    let messageElement = props.messageData.messageData.map(m => <Messages message={m.message}/>)
+    let dialogElements = props.messageData.dialogsData.map(d => <DialogsItems key={d.id} id={d.id} name={d.name}/>)
+    let messageElement = props.messageData.messageData.map(m => <Messages key={m.id} message={m.message}/>)
     let newText=props.messageData.newMessage;
 
     let addMessage = () => {
         props.addMessage();
     }
    let messageChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        let newText=e.currentTarget.value;
+       let newText=e.currentTarget.value;
        props.messageChange(newText);
    }
 

@@ -23,8 +23,8 @@ return{
  let mapDispatchToProps=(dispatch:Dispatch,):MapDispatchToPropsType=>{
 
         return{
-            addMessage:()=>{dispatch(sendMessageAC())},
-            messageChange:(newText:string)=>{dispatch(addMessageAC(newText))}
+            addMessage  :()=>{dispatch(sendMessageAC())},
+            messageChange :(newText:string)=>{dispatch(addMessageAC(newText))}
         }
  }
 

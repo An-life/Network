@@ -11,3 +11,4 @@ let rootRedusers=combineReducers({
 })
 export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >|ReturnType<typeof updatePostAC >|ReturnType<typeof addPostAC >
 export let store=createStore(rootRedusers);
+

@@ -26,14 +26,30 @@ import {ActionType} from './StoreRedux';
  }
 
 export const  messageReduser=(state:MessagesType=initialState ,action:ActionType):MessagesType=>{
-    if(action.type==='ADD_MESSAGE'){
+     let stateCopy={
+         ...state,
+         messageData:[...state.messageData]
+     };
+     switch (action.type){
+         case 'UPDATE_POST' :
+             stateCopy.newMessage=action.newText;
+             return stateCopy;
+         case'ADD_MESSAGE' :
+             let newMessageText=state.newMessage;
+             stateCopy.newMessage='';
+             stateCopy.messageData.push({id: 6, message: newMessageText});
+             return stateCopy;
+         default:
+             return state;
+     }
+   /* if(action.type==='ADD_MESSAGE'){
         state.newMessage=action.newText;
     }else if(action.type==='SEND_MESSAGE'){
         let newMessageText=state.newMessage;
         state.newMessage=''
        state.messageData.push({id: 1, message: newMessageText});
     }
-    return state;
+    return state;*/
 }
 export const addMessageAC=(newText:string)=>{
     return {type:'ADD_MESSAGE',newText:newText}as const}
