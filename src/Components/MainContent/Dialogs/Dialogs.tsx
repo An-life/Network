@@ -2,23 +2,12 @@ import React, {ChangeEvent, ChangeEventHandler} from 'react';
 import s from './Dialogs.module.css'
 import {DialogsItems} from './DialogsItems';
 import {Messages} from './Messages';
-import {addMessageAC, sendMessageAC} from '../../../redux/messageReduser';
-import {ActionType} from '../../../redux/state';
 import {MessagesType} from '../../../App';
 
 type PropsType = {
     addMessage:()=>void
-    messgeChange:(newText:string)=>void
+    messageChange:(newText:string)=>void
     messageData: MessagesType
-
-}
-type DialogsType = {
-    id: number,
-    name: string
-}
-type MessageType = {
-    id: number,
-    message: string
 }
 
 export const Dialogs = (props: PropsType) => {
@@ -30,10 +19,9 @@ export const Dialogs = (props: PropsType) => {
     let addMessage = () => {
         props.addMessage();
     }
-   let messgeChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
+   let messageChange=(e:ChangeEvent<HTMLTextAreaElement>)=>{
         let newText=e.currentTarget.value;
-       props.messgeChange(newText);
-
+       props.messageChange(newText);
    }
 
     return (<div className={s.containerDialogs}>
@@ -43,7 +31,7 @@ export const Dialogs = (props: PropsType) => {
             </div>
             <div>
                 {messageElement}
-                <textarea value={newText} onChange={messgeChange} placeholder={'Enter yout message...'}></textarea>
+                <textarea value={newText} onChange={messageChange} placeholder={'Enter yout message...'}></textarea>
                 <button onClick={addMessage}>Send</button>
             </div>
 

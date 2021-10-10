@@ -1,5 +1,6 @@
-import {ActionType} from './state';
+
 import {PostDataType} from '../App';
+import {ActionType} from './StoreRedux';
 
 let initialState={
      posts:[
@@ -9,22 +10,20 @@ let initialState={
         ],
         newPostText:''
 }
-export const  profileReduser=(state=initialState,action:ActionType):PostDataType=>{
+export const  profileReduser=(state:PostDataType=initialState,action:ActionType):PostDataType=>{
     if(action.type==='ADD_POST'){
         let postMessage={
             id: 5,
-            post:action.newText,
+            post:state.newPostText,
             like: 3
         }
         state.posts.push(postMessage);
         state.newPostText='';
-
     }else if(action.type==='UPDATE_POST'){
        state.newPostText=action.newText;}
     return state;
 }
-export const updatePostAC=(newText:string):ActionType=>{
-    return {type:'UPDATE_POST',newText:newText}
-}
-export const addPostAC=(newText:string):ActionType=>{
-    return {type:'ADD_POST',newText:newText}}
+export const updatePostAC=(newText:string)=>{
+    return {type:'UPDATE_POST',newText:newText}as const}
+export const addPostAC=()=>{
+    return {type:'ADD_POST'}as const}

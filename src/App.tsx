@@ -8,9 +8,9 @@ import {BrowserRouter} from 'react-router-dom';
 import {News} from './Components/MainContent/News/News';
 import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
-import {ActionType} from './redux/state';
-import {AppStateType, StoreType} from './redux/StoreRedux';
+import {ActionType, AppStateType, StoreType} from './redux/StoreRedux';
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
+
 
 
 type AppPropsType={

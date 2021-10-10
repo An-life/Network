@@ -1,14 +1,13 @@
 import {combineReducers, createStore} from 'redux';
-import {profileReduser} from './profileReduser';
-import {messageReduser} from './messageReduser';
+import {addPostAC, profileReduser, updatePostAC} from './profileReduser';
+import {addMessageAC, messageReduser, sendMessageAC} from './messageReduser';
 
-export type RootReducerType = typeof redusers;
+export type RootReducerType = typeof rootRedusers;
 export type AppStateType = ReturnType<RootReducerType>
 export type StoreType = typeof store;
-
-let redusers=combineReducers({
+let rootRedusers=combineReducers({
     postData :profileReduser,
     messageData :messageReduser
 })
-
-export let store=createStore(redusers);
+export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >|ReturnType<typeof updatePostAC >|ReturnType<typeof addPostAC >
+export let store=createStore(rootRedusers);

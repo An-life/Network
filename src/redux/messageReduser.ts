@@ -1,6 +1,10 @@
 
-import {ActionType} from './state';
+
 import {MessagesType} from '../App';
+import {ActionType} from './StoreRedux';
+
+
+
  let initialState= {
      dialogsData: [
          {id: 1, name: 'Anna'},
@@ -21,7 +25,7 @@ import {MessagesType} from '../App';
 
  }
 
-export const  messageReduser=(state=initialState ,action:ActionType):MessagesType=>{
+export const  messageReduser=(state:MessagesType=initialState ,action:ActionType):MessagesType=>{
     if(action.type==='ADD_MESSAGE'){
         state.newMessage=action.newText;
     }else if(action.type==='SEND_MESSAGE'){
@@ -31,7 +35,7 @@ export const  messageReduser=(state=initialState ,action:ActionType):MessagesTyp
     }
     return state;
 }
-export const addMessageAC=(newText:string):ActionType=>{
-    return {type:'ADD_MESSAGE',newText:newText}}
-export const sendMessageAC=(newText:string):ActionType=>{
-    return {type:'SEND_MESSAGE',newText:newText}}
+export const addMessageAC=(newText:string)=>{
+    return {type:'ADD_MESSAGE',newText:newText}as const}
+export const sendMessageAC=()=>{
+    return {type:'SEND_MESSAGE'}as const}
