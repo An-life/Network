@@ -17,16 +17,12 @@ export const profileReduser = (state: PostDataType = initialState, action: Actio
             post: state.newPostText,
             like: 3
         };
-            let stateCopy = {...state};
-            stateCopy.posts = [...stateCopy.posts];
-            stateCopy.posts.push(postMessage);
-            stateCopy.newPostText = '';
-            return stateCopy;}
+            let stateCopy= {...state,posts : [...state.posts,postMessage],newPostText:''};
+            return stateCopy;
+           }
 
         case 'UPDATE_POST':{
-            let stateCopy = {...state};
-            stateCopy.newPostText = action.newText;
-            return stateCopy;
+            return {...state,newPostText : action.newText};
         }
         default:
             return state;
@@ -44,6 +40,7 @@ export const profileReduser = (state: PostDataType = initialState, action: Actio
     return state;*/
 }
 export const updatePostAC = (newText: string) => {
+
     return {type: 'UPDATE_POST', newText: newText} as const
 }
 export const addPostAC = () => {
