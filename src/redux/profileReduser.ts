@@ -1,5 +1,8 @@
 import {PostDataType} from '../App';
-import {ActionType} from './StoreRedux';
+
+
+type  ActionType=ReturnType<typeof updatePostAC >|
+    ReturnType<typeof addPostAC >
 
 let initialState = {
     posts: [

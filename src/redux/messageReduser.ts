@@ -1,5 +1,8 @@
 import {MessagesType} from '../App';
-import {ActionType} from './StoreRedux';
+
+type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >
+
+
 
 
 let initialState = {

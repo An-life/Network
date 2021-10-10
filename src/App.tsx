@@ -10,6 +10,8 @@ import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
 import {ActionType, AppStateType, StoreType} from './redux/StoreRedux';
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
+import {Users} from './Components/MainContent/Users/Users';
+import UserContainer from './Components/MainContent/Users/UserContainer';
 
 
 
@@ -46,6 +48,9 @@ type MessageType = {
 }
 
 
+function UsersContainer() {
+    return null;
+}
 
 function App() {
 
@@ -57,6 +62,8 @@ function App() {
                     <div className="appMainContent">
                         <Route path="/profile" render={()=><Profile  />}/>
                         <Route path="/dialogs" render={()=><DialogContainer />}/>
+                        <Route path="/users" render={()=><UserContainer />}/>
+
                         <Route path="/news" render={()=><News/>}/>
                         <Route path="/music" render={()=><Music/>}/>
                         <Route path="/settings" render={()=><Settings/>}/>
