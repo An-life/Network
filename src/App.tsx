@@ -10,7 +10,6 @@ import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
 import {ActionType, AppStateType, StoreType} from './redux/StoreRedux';
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
-import {Users} from './Components/MainContent/Users/Users';
 import UserContainer from './Components/MainContent/Users/UserContainer';
 
 
