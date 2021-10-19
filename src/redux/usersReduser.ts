@@ -15,24 +15,25 @@ type SetUsersACActionType={
     type:'SET_USERS'
     users:Array<UserType>
 }
-type InitialStateType={
-    users:Array<UserType>
-}
+export  type InitialStateType={
+    users:Array<UserType>}
+
 export type UserType={
-    id:number
-    photoURL:string
-    fullName:string
-    followed:boolean
-    status:string
-    location:LocationType
+    name: string
+    id: number
+    uniqueUrlName: null|string
+    photos: PhotoType
+    status: null|string
+    followed: boolean
 }
-type LocationType={
-    city:string
-    country:string
+type PhotoType={
+    small: null|string
+    large: null|string
 }
-let initialState={users:[{id:1,photoURL:'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',fullName:'Dmitry',followed:true,status:'I love',location:{city:'Minsk',country:'Belarus'}},
-        {id:2,photoURL:'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',fullName:'Nino',followed:false,status:'I am boss',location:{city:'Moscow',country:'RF'}},
-        {id:3,photoURL:'https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png',fullName:'Karl',followed:true,status:'I am a cat',location:{city:'Paris',country:'France'}}]}
+
+let initialState={
+    users:[]
+}
 
 export const usersReducer=(state: InitialStateType=initialState,action:ActionType): InitialStateType=>{
     switch (action.type){
