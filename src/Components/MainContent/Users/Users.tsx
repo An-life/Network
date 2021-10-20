@@ -1,15 +1,20 @@
 import React from 'react';
 import userPhoto from '../../../assets/images/blank-profile-picture-973460_960_720.webp';
 import s from './User.module.css';
-import * as axios from 'axios';
 import {AppStateType} from '../../../redux/StoreRedux';
 import {MapDispatchToPropsType, MapStateToPropsType} from './UserContainer';
-
+import {UserType} from '../../../redux/usersReduser';
+import axios from 'axios';
+type APIType={
+    items:Array<UserType>
+    totalCount:number
+    error:string
+}
 
 class Users extends React.Component< MapStateToPropsType&MapDispatchToPropsType , AppStateType> {
 
         componentDidMount() {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            axios.get<APIType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         });
         }
