@@ -2,7 +2,7 @@ import React from 'react';
 
 import {addPostAC, updatePostAC} from './profileReduser';
 
-type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType
+type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType|TogleIsFetchingType
 
 type FollowACActionType = {
     type: 'FOLLOW'
@@ -25,11 +25,16 @@ type SetTotalCountType={
     type:'SET_TOTALCOUNT'
     count:number
 }
+type TogleIsFetchingType={
+    type:'TOGLE_IS_FETCHING'
+    isFetching:boolean
+}
 export  type InitialStateType = {
     users: Array<UserType>
     pageSize:number
     totalUsersCount:number
     currentPage:number
+    isFetching:boolean
 }
 
 
@@ -51,6 +56,7 @@ let initialState = {
     pageSize: 50,
     totalUsersCount: 0,
     currentPage:1,
+    isFetching:true
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -87,6 +93,9 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                 ...state,totalUsersCount:action.count
             }
         }
+        case 'TOGLE_IS_FETCHING':{
+            return {...state,isFetching:action.isFetching}
+        }
         default:
             return state;
     }
@@ -96,6 +105,7 @@ export const followAC = (userID: number) => ({type: 'FOLLOW', userID: userID});
 export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID: userID});
 export const setUsersAC = (users: Array<UserType>) => ({type: 'SET_USERS', users});
 export const setCurrentPageAC=(currentPage:number)=>({type:'SET_CURRENTPAGE',currentPage});
-export const setTotalCountAC=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount})
+export const setTotalCountAC=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount});
+export const TogleIsFetchingAC=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching})
 
 
