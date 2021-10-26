@@ -3,3 +3,6 @@
     width: 50px;
     border-radius: 50%;
 }
+.selectedNum{
+    font-weight: bold;
+}

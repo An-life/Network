@@ -14,14 +14,31 @@ type APIType={
 class Users extends React.Component< MapStateToPropsType&MapDispatchToPropsType , AppStateType> {
 
         componentDidMount() {
-            axios.get<APIType>('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            this.props.setUsers(response.data.items)
+            axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+                           this.props.setUsers(response.data.items);
+                           this.props.setTotalUsersCount(response.data.totalCount);
         });
+        }
+        onPageChanged=(p:number)=>{this.props.setCurrentPage(p);
+            axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`).then(response => {
+                this.props.setUsers(response.data.items);
+                this.props.setTotalUsersCount(response.data.totalCount);
+            });
         }
 
 
     render() {
+            let pageCount=Math.ceil(this.props.totalUsersCount/this.props.pageSize);
+            let pages=[];
+            for(let i=1;i<pageCount;i++){
+                pages.push(i);
+            }
+
         return<div>
+            <div>
+                {pages.map(p=>{
+                    return <span onClick={(e)=>{this.onPageChanged(p)}} className={this.props.currentPage===p? s.selectedNum:''}>{p}</span>})}
+            </div>
             {
                 this.props.usersPage.map(u => <div key={u.id}>
                 <span>
