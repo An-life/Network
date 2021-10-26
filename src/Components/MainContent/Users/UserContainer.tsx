@@ -3,11 +3,10 @@ import { connect } from 'react-redux';
 import {AppStateType} from '../../../redux/StoreRedux';
 import {Dispatch} from 'redux';
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalCountAC,
-    setUsersAC, TogleIsFetchingAC,
-    unfollowAC,
+    follow,
+    setCurrentPage, setTotalUsersCount,
+    setUsers, togleIsFetching,
+    unfollow,
     UserType
 } from '../../../redux/usersReduser';
 import Users from './Users';
@@ -78,7 +77,7 @@ let mapStateToProps=(state:AppStateType):MapStateToPropsType=>{
         isFetching:state.UsersPage.isFetching
     }
 }
-let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
+/*let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
 return{
     follow:(userID:number)=>{
         dispatch(followAC(userID))
@@ -98,7 +97,8 @@ return{
     togleIsFetching:(isFetching:boolean)=>{
         dispatch(TogleIsFetchingAC(isFetching))
     }
-}}
+}}*/
 
 
-export default connect(mapStateToProps,mapDispatchToProps)(UsersAIP);
+export default connect(mapStateToProps,{follow, unfollow, setUsers, setCurrentPage,
+    setTotalUsersCount, togleIsFetching})(UsersAIP);

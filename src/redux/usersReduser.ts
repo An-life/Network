@@ -101,11 +101,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-export const followAC = (userID: number) => ({type: 'FOLLOW', userID: userID});
-export const unfollowAC = (userID: number) => ({type: 'UNFOLLOW', userID: userID});
-export const setUsersAC = (users: Array<UserType>) => ({type: 'SET_USERS', users});
-export const setCurrentPageAC=(currentPage:number)=>({type:'SET_CURRENTPAGE',currentPage});
-export const setTotalCountAC=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount});
-export const TogleIsFetchingAC=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching})
+export const follow = (userID: number) => ({type: 'FOLLOW', userID: userID});
+export const unfollow = (userID: number) => ({type: 'UNFOLLOW', userID: userID});
+export const setUsers = (users: Array<UserType>) => ({type: 'SET_USERS', users});
+export const setCurrentPage=(currentPage:number)=>({type:'SET_CURRENTPAGE',currentPage});
+export const setTotalUsersCount=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount});
+export const togleIsFetching=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching})
 
 
