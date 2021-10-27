@@ -59,7 +59,7 @@ function App() {
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">
-                        <Route path="/profile" render={() => <ProfileContainer/>}/>
+                        <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
                         <Route path="/dialogs" render={() => <DialogContainer/>}/>
                         <Route path="/users" render={() => <UserContainer/>}/>
 
