@@ -2,6 +2,7 @@ import React from 'react';
 import userPhoto from '../../../assets/images/blank-profile-picture-973460_960_720.webp';
 import s from './User.module.css';
 import {UserType} from '../../../redux/usersReduser';
+import { NavLink } from 'react-router-dom';
 
 type PropsType={
     totalUsersCount:number
@@ -29,7 +30,10 @@ let Users=(props:PropsType)=>{
         {
             props.usersPage.map(u => <div key={u.id}>
                 <span>
-                    <div><img src={u.photos.small != null ? u.photos.small : userPhoto} alt='UserPhoto' className={s.userImg}/></div>
+                    <div><NavLink to={'/profile/'+u.id}>
+                        <img src={u.photos.small != null ? u.photos.small : userPhoto} alt='UserPhoto' className={s.userImg}/>
+                    </NavLink>
+                    </div>
                     <div>{u.followed ? <button onClick={() => {
                         props.unfollow(u.id)
                     }}>UnFollow</button> : <button onClick={() => {

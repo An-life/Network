@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from 'redux';
-import {addPostAC, profileReduser, updatePostAC} from './profileReduser';
+import {addPost, profileReduser, updatePost} from './profileReduser';
 import {addMessageAC, messageReduser, sendMessageAC} from './messageReduser';
 import {follow, setUsers, unfollow, usersReducer} from './usersReduser';
 
@@ -11,8 +11,8 @@ let rootRedusers=combineReducers({
     messageData :messageReduser,
     UsersPage: usersReducer
 })
-export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >|ReturnType<typeof updatePostAC >|
-    ReturnType<typeof addPostAC >| ReturnType<typeof follow >|ReturnType<typeof unfollow >|ReturnType<typeof setUsers>
+export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >|ReturnType<typeof updatePost >|
+    ReturnType<typeof addPost >| ReturnType<typeof follow >|ReturnType<typeof unfollow >|ReturnType<typeof setUsers>
 
 export let store=createStore(rootRedusers);
 

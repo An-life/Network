@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {addPostAC, updatePostAC} from './profileReduser';
+import {addPost, updatePost} from './profileReduser';
 
 type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType|TogleIsFetchingType
 

@@ -29,7 +29,7 @@ export type MapDispatchToPropsType={
     setTotalUsersCount:(totalCount:number)=>void
     togleIsFetching:(isFetching:boolean)=>void
 }
-type APIType={
+export type APIType={
     items:Array<UserType>
     totalCount:number
     error:string
