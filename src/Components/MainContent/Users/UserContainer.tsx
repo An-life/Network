@@ -39,7 +39,10 @@ class UsersAIP extends React.Component< MapStateToPropsType&MapDispatchToPropsTy
 
     componentDidMount() {
         this.props.togleIsFetching(true);
-        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{withCredentials:true,
+            headers:{
+                'API-KEY':'13158516-512e-4eb5-8351-d4d4ecf9c6e7'
+            }}).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
             this.props.togleIsFetching(false);
@@ -47,7 +50,10 @@ class UsersAIP extends React.Component< MapStateToPropsType&MapDispatchToPropsTy
     }
     onPageChanged=(p:number)=>{this.props.setCurrentPage(p);
         this.props.togleIsFetching(true);
-        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`).then(response => {
+        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.pageSize}`,{withCredentials:true,
+            headers:{
+                'API-KEY':'13158516-512e-4eb5-8351-d4d4ecf9c6e7'
+            }}).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
             this.props.togleIsFetching(false);

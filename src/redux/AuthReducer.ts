@@ -12,11 +12,11 @@ let initialState = {
    userId:null,
     email:null,
     login:null,
-    isAuth:false
+    isAuth:false,
 }
 
 
-export const authReduser = (state:InitialStateType = initialState, action: ActionType):InitialStateType  => {
+export const authReducer = (state:InitialStateType = initialState, action: ActionType):InitialStateType  => {
     switch (action.type) {
         case'SET_USERS_DATA':
             return {

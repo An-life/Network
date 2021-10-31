@@ -24,13 +24,12 @@ type MapStateToPropsType={
 }
  class HeaderApi extends React.Component< MapStateToPropsType&MapDispatchToPropsType , AppStateType>{
     componentDidMount() {
-        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/auth/me}`,
+        axios.get<APIType>(`https://social-network.samuraijs.com/api/1.0/auth/me`,
             {withCredentials:true} ).then(response => {
                 if(response.data.resultCode===0){
                     let {id, email, login}=response.data.data
                     this.props.setAuthUsersData(id, email, login);
                 }
-
         });
     }
     render() {
@@ -40,6 +39,5 @@ type MapStateToPropsType={
 let mapStateToProps=(state:AppStateType): MapStateToPropsType=>(
     {isAuth:state.Auth.isAuth,
     login:state.Auth.login})
-
 
 export  default connect(mapStateToProps,{setAuthUsersData})(HeaderApi);
