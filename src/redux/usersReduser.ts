@@ -2,7 +2,9 @@ import React from 'react';
 
 import {addPost, updatePost} from './profileReduser';
 
-type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType|TogleIsFetchingType
+type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType|TogleIsFetchingType|
+    TogleIsFolliwingProgressType
+
 
 type FollowACActionType = {
     type: 'FOLLOW'
@@ -29,12 +31,18 @@ type TogleIsFetchingType={
     type:'TOGLE_IS_FETCHING'
     isFetching:boolean
 }
+type TogleIsFolliwingProgressType={
+    type:'TOGLE_IS_FETCHING_PROGRESS'
+    userId:number
+    isFetching:boolean
+}
 export  type InitialStateType = {
     users: Array<UserType>
     pageSize:number
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:number[]
 }
 
 
@@ -56,7 +64,8 @@ let initialState = {
     pageSize: 50,
     totalUsersCount: 0,
     currentPage:1,
-    isFetching:true
+    isFetching:true,
+    followingInProgress:[]
 }
 
 export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -96,6 +105,10 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case 'TOGLE_IS_FETCHING':{
             return {...state,isFetching:action.isFetching}
         }
+        case 'TOGLE_IS_FETCHING_PROGRESS':{
+            return{...state, followingInProgress:action.isFetching?[...state.followingInProgress,action.userId]
+                    :state.followingInProgress.filter(id=>id!=action.userId)}
+        }
         default:
             return state;
     }
@@ -106,6 +119,7 @@ export const unfollow = (userID: number) => ({type: 'UNFOLLOW', userID: userID})
 export const setUsers = (users: Array<UserType>) => ({type: 'SET_USERS', users});
 export const setCurrentPage=(currentPage:number)=>({type:'SET_CURRENTPAGE',currentPage});
 export const setTotalUsersCount=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount});
-export const togleIsFetching=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching})
+export const togleIsFetching=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching});
+export const togleIsFollowingProgress=(userId:number,isFetching:boolean)=>({type:'TOGLE_IS_FETCHING_PROGRESS',userId, isFetching})
 
 

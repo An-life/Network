@@ -5,7 +5,7 @@ import {Dispatch} from 'redux';
 import {
     follow,
     setCurrentPage, setTotalUsersCount,
-    setUsers, togleIsFetching,
+    setUsers, togleIsFetching, togleIsFollowingProgress,
     unfollow,
     UserType
 } from '../../../redux/usersReduser';
@@ -21,6 +21,7 @@ export type MapStateToPropsType={
     totalUsersCount:number
     currentPage:number
     isFetching:boolean
+    followingInProgress:number[]
 }
 export type MapDispatchToPropsType={
     follow:(userID:number)=>void
@@ -29,6 +30,7 @@ export type MapDispatchToPropsType={
     setCurrentPage:(currentPage:number)=>void
     setTotalUsersCount:(totalCount:number)=>void
     togleIsFetching:(isFetching:boolean)=>void
+    togleIsFollowingProgress:(userId:number,isFetching:boolean)=>void
 }
 export type APIType={
     items:Array<UserType>
@@ -65,6 +67,9 @@ class UsersAIP extends React.Component< MapStateToPropsType&MapDispatchToPropsTy
                       follow={this.props.follow}
                       usersPage={this.props.usersPage}
                       onPageChanged={this.onPageChanged}
+                  followingInProgress={this.props.followingInProgress}
+                      togleIsFollowingProgress={this.props.togleIsFollowingProgress}
+
            /></div></div>)
 
 }}
@@ -75,7 +80,8 @@ let mapStateToProps=(state:AppStateType):MapStateToPropsType=>{
         pageSize:state.UsersPage.pageSize,
         totalUsersCount:state.UsersPage.totalUsersCount,
         currentPage: state.UsersPage.currentPage,
-        isFetching:state.UsersPage.isFetching
+        isFetching:state.UsersPage.isFetching,
+        followingInProgress: state.UsersPage.followingInProgress
     }
 }
 /*let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
@@ -102,4 +108,4 @@ return{
 
 
 export default connect(mapStateToProps,{follow, unfollow, setUsers, setCurrentPage,
-    setTotalUsersCount, togleIsFetching})(UsersAIP);
+    setTotalUsersCount, togleIsFetching,togleIsFollowingProgress})(UsersAIP);
