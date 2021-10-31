@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from './Components/Header/Header';
 import {Nav} from './Components/Nav/Nav';
 import {Route} from 'react-router';
 import {BrowserRouter} from 'react-router-dom';
@@ -11,6 +10,8 @@ import {ActionType, AppStateType, StoreType} from './redux/StoreRedux';
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
 import UserContainer from './Components/MainContent/Users/UserContainer';
 import ProfileContainer from './Components/MainContent/Profile/ProfileContainer';
+import HeaderContainer from './Components/Header/HeaderContainer';
+
 
 
 
@@ -55,7 +56,7 @@ function App() {
 
     return (<BrowserRouter>
             <div className="App">
-                <Header/>
+                <HeaderContainer/>
                 <div className="InfContainer">
                     <Nav/>
                     <div className="appMainContent">

@@ -6,3 +6,12 @@
     height: 100px;
     width: 100px;
 }
+.login{
+    float: right;
+}
+.login a{
+    padding: 40px ;
+    text-decoration: none;
+    color: floralwhite;
+    font-size: 30px;
+}
