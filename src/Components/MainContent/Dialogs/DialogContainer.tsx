@@ -1,32 +1,38 @@
-import React, {ChangeEvent, ChangeEventHandler} from 'react';
+import React from 'react';
 import {addMessageAC, sendMessageAC} from '../../../redux/messageReduser';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
-import {MessagesType, StateType} from '../../../App';
+import {MessagesType} from '../../../App';
 import {Dispatch} from 'redux';
 import {AppStateType} from '../../../redux/StoreRedux';
 
 
- type MapStateToPropsType={
-     messageData:MessagesType
- }
-type MapDispatchToPropsType={
-    addMessage:()=>void
-    messageChange:(newText:string)=>void
+type MapStateToPropsType = {
+    messageData: MessagesType
+    isAuth:boolean
+}
+type MapDispatchToPropsType = {
+    addMessage: () => void
+    messageChange: (newText: string) => void
 }
 
- let  mapStateToProps=(state:AppStateType):MapStateToPropsType=>{
-return{
-    messageData:state.messageData
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        messageData: state.messageData,
+        isAuth: state.Auth.isAuth
+    }
 }
- }
- let mapDispatchToProps=(dispatch:Dispatch,):MapDispatchToPropsType=>{
+let mapDispatchToProps = (dispatch: Dispatch,): MapDispatchToPropsType => {
 
-        return{
-            addMessage  :()=>{dispatch(sendMessageAC())},
-            messageChange :(newText:string)=>{dispatch(addMessageAC(newText))}
+    return {
+        addMessage: () => {
+            dispatch(sendMessageAC())
+        },
+        messageChange: (newText: string) => {
+            dispatch(addMessageAC(newText))
         }
- }
+    }
+}
 
-export const DialogContainer=connect(mapStateToProps,mapDispatchToProps)(Dialogs);
+export const DialogContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 

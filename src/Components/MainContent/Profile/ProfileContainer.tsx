@@ -10,20 +10,22 @@ type MatchType = {
     userId: string
 }
 type ConnectedPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<MatchType>
-type  MapStateToPropsType={
-    profile:ProfileType|null
+type  MapStateToPropsType = {
+    profile: ProfileType | null
+    isAuth:boolean
 }
-type MapDispatchToPropsType={
-    getUserProfile:(userId:string)=>void
+type MapDispatchToPropsType = {
+    getUserProfile: (userId: string) => void
 }
-export type APIType=ProfileType
-class ProfileContainer extends React.Component< ConnectedPropsType, AppStateType>{
+export type APIType = ProfileType
+
+class ProfileContainer extends React.Component<ConnectedPropsType, AppStateType> {
     componentDidMount() {
-        let userId=this.props.match.params.userId
-        if(!userId){
-            userId='2';
+        let userId = this.props.match.params.userId
+        if (!userId) {
+            userId = '2';
         }
-      this.props.getUserProfile(userId);
+        this.props.getUserProfile(userId);
     }
 
     render() {
@@ -32,10 +34,12 @@ class ProfileContainer extends React.Component< ConnectedPropsType, AppStateType
         )
     }
 }
-let mapStateToProps=(state:AppStateType):MapStateToPropsType=>({
-profile: state.postData.profile
+
+let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
+    profile: state.postData.profile,
+    isAuth: state.Auth.isAuth
 })
 
-let withRouterProfileContainer=withRouter(ProfileContainer)
+let withRouterProfileContainer = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps,{getUserProfile}) (withRouterProfileContainer);
+export default connect(mapStateToProps, {getUserProfile})(withRouterProfileContainer);

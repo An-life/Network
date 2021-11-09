@@ -1,13 +1,15 @@
-import React, {ChangeEvent, ChangeEventHandler} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import {DialogsItems} from './DialogsItems';
 import {Messages} from './Messages';
 import {MessagesType} from '../../../App';
+import {Redirect} from 'react-router';
 
 type PropsType = {
     addMessage:()=>void
     messageChange:(newText:string)=>void
     messageData: MessagesType
+    isAuth:boolean
 }
 
 export const Dialogs = (props: PropsType) => {
@@ -23,6 +25,7 @@ export const Dialogs = (props: PropsType) => {
        let newText=e.currentTarget.value;
        props.messageChange(newText);
    }
+   if(props.isAuth==false) return <Redirect to={'/Login'}/>
 
     return (<div className={s.containerDialogs}>
             <div>
