@@ -1,11 +1,21 @@
 import axios from 'axios';
 import {UserType} from '../redux/usersReduser';
+import {ContactsType, PhotoType, ProfileType} from '../redux/profileReduser';
+import {DataType} from '../Components/Header/HeaderContainer';
 
 
 type APIType = {
     resultCode: number
     totalCount:number
     items:Array<UserType>
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: PhotoType
+    data:DataType
 }
 const instance=axios.create({withCredentials:true,
     baseURL:'https://social-network.samuraijs.com/api/1.0/',
@@ -22,5 +32,13 @@ const instance=axios.create({withCredentials:true,
      unfollow(userId:number){
         return  instance.delete<APIType>(`follow/${userId}`);
      },
-
+     getProfile(userId:string){
+       return   instance.get<APIType>(`profile/`+userId);
+     }
  }
+
+export const authAPI={
+    me(){
+        return instance.get<APIType>(`auth/me`)
+    }
+}
