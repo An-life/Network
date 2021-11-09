@@ -1,6 +1,7 @@
 import React from 'react';
 
-import {addPost, updatePost} from './profileReduser';
+import {usersAPI} from '../API/api';
+import {Dispatch} from 'redux';
 
 type  ActionType = FollowACActionType | UnFollowACActionType | SetUsersACActionType|SetCurrentPageType|SetTotalCountType|TogleIsFetchingType|
     TogleIsFolliwingProgressType
@@ -114,12 +115,44 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
-export const follow = (userID: number) => ({type: 'FOLLOW', userID: userID});
-export const unfollow = (userID: number) => ({type: 'UNFOLLOW', userID: userID});
+export const accseptfollow = (userID: number) => ({type: 'FOLLOW', userID: userID});
+export const accseptunfollow = (userID: number) => ({type: 'UNFOLLOW', userID: userID});
 export const setUsers = (users: Array<UserType>) => ({type: 'SET_USERS', users});
 export const setCurrentPage=(currentPage:number)=>({type:'SET_CURRENTPAGE',currentPage});
 export const setTotalUsersCount=(totalUsersCount:number)=>({type:'SET_TOTALCOUNT',count:totalUsersCount});
 export const togleIsFetching=(isFetching:boolean)=>({type:'TOGLE_IS_FETCHING', isFetching});
 export const togleIsFollowingProgress=(userId:number,isFetching:boolean)=>({type:'TOGLE_IS_FETCHING_PROGRESS',userId, isFetching})
 
+export  const getUsersThunkCreator=(currentPage:number,pageSize:number)=>{
+    return (dispatch:Dispatch)=>{
+        dispatch (togleIsFetching(true));
+        usersAPI.getUsers(currentPage,pageSize).then(data => {
+            dispatch (setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+            dispatch(togleIsFetching(false));
+        });
+    }
+}
+export  const follow=(userId:number)=> {
+    return (dispatch: Dispatch) => {
+       dispatch(togleIsFollowingProgress(userId,true));
+        usersAPI.follow(userId).then(response => {
+                if (response.data.resultCode === 0) {
+                   dispatch(accseptfollow(userId));
+                }
+             dispatch(togleIsFollowingProgress(userId,false));
+            })
+}
+}
+export  const unfollow=(userId:number)=> {
+    return (dispatch: Dispatch) => {
+        dispatch(togleIsFollowingProgress(userId,true));
+        usersAPI.unfollow(userId).then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(accseptunfollow(userId));
+                }
+                dispatch(togleIsFollowingProgress(userId,false));
+            })
+    }
+}
 

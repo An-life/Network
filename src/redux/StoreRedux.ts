@@ -1,8 +1,9 @@
-import {combineReducers, createStore} from 'redux';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {addPost, profileReduser, updatePost} from './profileReduser';
 import {addMessageAC, messageReduser, sendMessageAC} from './messageReduser';
 import {follow, setUsers, unfollow, usersReducer} from './usersReduser';
 import {authReducer, setAuthUsersData} from './AuthReducer';
+import thunkMiddleware  from 'redux-thunk';
 
 export type RootReducerType = typeof rootRedusers;
 export type AppStateType = ReturnType<RootReducerType>
@@ -19,7 +20,7 @@ export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMe
     ReturnType<typeof unfollow >|
     ReturnType<typeof setUsers>|ReturnType<typeof setAuthUsersData>
 
-export let store=createStore(rootRedusers);
+export let store=createStore(rootRedusers,applyMiddleware(thunkMiddleware ));
 
 
 //@ts-ignore
