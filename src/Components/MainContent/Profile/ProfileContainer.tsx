@@ -4,6 +4,8 @@ import {AppStateType} from '../../../redux/StoreRedux';
 import {connect} from 'react-redux';
 import {getUserProfile, ProfileType} from '../../../redux/profileReduser';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
+import {Redirect} from 'react-router/ts4.0';
+import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
 
 
 type MatchType = {
@@ -12,8 +14,9 @@ type MatchType = {
 type ConnectedPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteComponentProps<MatchType>
 type  MapStateToPropsType = {
     profile: ProfileType | null
-    isAuth:boolean
+
 }
+
 type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
 }
@@ -32,14 +35,14 @@ class ProfileContainer extends React.Component<ConnectedPropsType, AppStateType>
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
-    }
-}
+    }}
+
+
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.postData.profile,
-    isAuth: state.Auth.isAuth
 })
-
-let withRouterProfileContainer = withRouter(ProfileContainer)
+let AuthRedirectComponent=WithAuthRedirect(ProfileContainer);
+let withRouterProfileContainer = withRouter(AuthRedirectComponent)
 
 export default connect(mapStateToProps, {getUserProfile})(withRouterProfileContainer);
