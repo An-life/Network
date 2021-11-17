@@ -10,6 +10,9 @@ import {
 } from '../../../redux/usersReduser';
 import Users from './Users';
 import {Preloader} from '../../Common/Preloader';
+import {compose} from 'redux';
+import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
+import {Dialogs} from '../Dialogs/Dialogs';
 
 
 export type MapStateToPropsType = {
@@ -109,7 +112,7 @@ return{
 }}*/
 
 
-export default connect(mapStateToProps, {
+
+export default compose <React.ComponentType>(connect(mapStateToProps, {
     follow, unfollow, setCurrentPage,
-    togleIsFollowingProgress, getUsersThunkCreator
-})(UsersAIP);
+    togleIsFollowingProgress, getUsersThunkCreator}), WithAuthRedirect)(UsersAIP)

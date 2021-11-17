@@ -6,6 +6,7 @@ import {getUserProfile, ProfileType} from '../../../redux/profileReduser';
 import {RouteComponentProps, withRouter} from 'react-router-dom';
 import {Redirect} from 'react-router/ts4.0';
 import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
+import {compose} from 'redux';
 
 
 type MatchType = {
@@ -42,7 +43,7 @@ class ProfileContainer extends React.Component<ConnectedPropsType, AppStateType>
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.postData.profile,
 })
-let AuthRedirectComponent=WithAuthRedirect(ProfileContainer);
-let withRouterProfileContainer = withRouter(AuthRedirectComponent)
 
-export default connect(mapStateToProps, {getUserProfile})(withRouterProfileContainer);
+
+
+export default compose <React.ComponentType>(connect(mapStateToProps, {getUserProfile}), withRouter, WithAuthRedirect)(ProfileContainer);
