@@ -1,15 +1,16 @@
-import {PostDataType} from '../App';
+
 import {Dispatch} from 'redux';
-import {usersAPI} from '../API/api';
+import {profileAPI, usersAPI} from '../API/api';
 
 
 
 type  ActionType=ReturnType<typeof addPost >|ReturnType<typeof updatePost >|
-    ReturnType<typeof setUserProfile >
+    ReturnType<typeof setUserProfile >|ReturnType<typeof setStatus>
 type InitialStateType={
     posts: Array<PostType>
     newPostText: string
     profile:ProfileType|null
+    status:string
 }
 export type ProfileType={
     aboutMe: string
@@ -49,12 +50,13 @@ let initialState = {
     ],
     newPostText: '',
     profile:null,
+    status:''
 }
 export const profileReduser = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
     switch (action.type) {
         case 'ADD_POST':{
             let postMessage = {
-            id: 5,
+            id: 2,
             post: state.newPostText,
             like: 3
         };
@@ -68,6 +70,11 @@ export const profileReduser = (state: InitialStateType = initialState, action: A
         case 'SET_USERPROFILE':{
             return {...state,profile:action.profile}
         }
+        case 'SET_STATUS':{
+            return {...state,
+                status:action.status}
+        }
+
         default:
             return state;
     }
@@ -93,9 +100,24 @@ export const addPost = () => {
 export const setUserProfile=(profile:ProfileType)=>{
     return{type:'SET_USERPROFILE',profile} as const
 }
+export const setStatus=(status:string)=>{
+    return{type:'SET_STATUS',status} as const
+}
 export const getUserProfile=(userId:string)=>(dispatch:Dispatch)=>{
     usersAPI.getProfile(userId).then(response => {
         dispatch(setUserProfile(response.data));
     });
 }
+export const getStatus=(userId:string)=>(dispatch:Dispatch)=>{
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data) );
+    });}
+
+export const updateStatus=(status:string)=>(dispatch:Dispatch)=>{
+    profileAPI.updateStatus(status).then(response => {
+        if(response.data.resultCode===0){
+        dispatch(setStatus(status));}
+    });}
+
+
 

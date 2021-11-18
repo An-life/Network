@@ -2,7 +2,7 @@ import axios from 'axios';
 import {UserType} from '../redux/usersReduser';
 import {ContactsType, PhotoType, ProfileType} from '../redux/profileReduser';
 import {DataType} from '../Components/Header/HeaderContainer';
-
+type APIStatusType=string
 
 type APIType = {
     resultCode: number
@@ -33,9 +33,20 @@ const instance=axios.create({withCredentials:true,
         return  instance.delete<APIType>(`follow/${userId}`);
      },
      getProfile(userId:string){
-       return   instance.get<APIType>(`profile/`+userId);
+       return  profileAPI.getProfile(userId)
      }
  }
+export const profileAPI={
+    getProfile(userId:string){
+        return   instance.get<APIType>(`profile/`+userId);
+    },
+    getStatus(userId:string){
+        return   instance.get<APIStatusType>(`profile/status/`+userId);
+    },
+    updateStatus(status:string){
+        return   instance.put<APIType>(`profile/status/`,{status:status});
+    }
+}
 
 export const authAPI={
     me(){
