@@ -3,7 +3,6 @@ import {Preloader} from '../../Common/Preloader';
 import {ProfileType} from '../../../redux/profileReduser';
 import {ProfileStatus} from './ProfileStatus';
 
-
 type PropsType = {
     profile: ProfileType | null
     status: string

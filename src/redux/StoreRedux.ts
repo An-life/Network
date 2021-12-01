@@ -22,10 +22,7 @@ let rootReducers = combineReducers({
     form: formReducer
 })
 
-
-
 export let store = createStore(rootReducers, applyMiddleware(thunkMiddleware));
-
 
 //@ts-ignore
 window.store = store;

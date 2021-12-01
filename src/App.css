@@ -1,12 +1,14 @@
-.App{
+.App {
     margin: 0 auto;
     width: 1200px;
 }
-.InfContainer{
+
+.InfContainer {
     display: flex;
 
 }
-.appMainContent{
+
+.appMainContent {
     background-color: #bae6e9;
     width: 1000px;
 }

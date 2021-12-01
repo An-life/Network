@@ -15,6 +15,7 @@ type PropsType = {
 export const Dialogs = (props: PropsType) => {
 
     let dialogElements = props.messageData.dialogsData.map(d => <DialogsItems key={d.id} id={d.id} name={d.name}/>)
+
     let messageElement = props.messageData.messageData.map(m => <Messages key={m.id} message={m.message}/>)
 
     let addNewMessage = (values: FormDataType) => {

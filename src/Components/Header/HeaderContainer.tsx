@@ -4,15 +4,16 @@ import {Header} from './Header';
 import {connect} from 'react-redux';
 import {getAuthUsersData} from '../../redux/AuthReducer';
 
-
 export type DataType = {
     id: number
     email: string
     login: string
 }
+
 type MapDispatchToPropsType = {
     getAuthUsersData: () => void
 }
+
 type MapStateToPropsType = {
     login: string | null
     isAuth: boolean
@@ -22,7 +23,6 @@ class HeaderApi extends React.Component<MapStateToPropsType & MapDispatchToProps
     componentDidMount() {
         this.props.getAuthUsersData();
     }
-
     render() {
         return <Header {...this.props}/>;
     }

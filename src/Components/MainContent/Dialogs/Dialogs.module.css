@@ -1,17 +1,20 @@
-.containerDialogs{
+.containerDialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
 }
-.dialog{
+
+.dialog {
     color: #498896;
-    padding:5px  10px ;
+    padding: 5px 10px;
     text-decoration: none;
 }
-.dialog a{
+
+.dialog a {
     text-decoration: none;
     color: #498896;
 
 }
-.messages{
-    padding:5px  10px ;
+
+.messages {
+    padding: 5px 10px;
 }

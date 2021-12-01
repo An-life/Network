@@ -2,7 +2,6 @@ import React from 'react';
 /*import {profileReduser} from './profileReduser';
 import {messageReduser} from './messageReduser';
 
-
  export let store={
      _state : {
          postData:{ posts:[
@@ -29,7 +28,6 @@ import {messageReduser} from './messageReduser';
                  {id: 5, message: 'Look'},
              ],
              newMessage:''
-
          }
      },
      getState(){

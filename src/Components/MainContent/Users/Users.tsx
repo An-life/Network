@@ -1,24 +1,20 @@
 import React from 'react';
 import userPhoto from '../../../assets/images/blank-profile-picture-973460_960_720.webp';
 import s from './User.module.css';
-import { UserType} from '../../../redux/usersReduser';
+import {UserType} from '../../../redux/usersReduser';
 import {NavLink} from 'react-router-dom';
-
-
-
 
 type PropsType = {
     totalUsersCount: number
     pageSize: number
     currentPage: number
-    unfollow:(userId:number)=>void
-    follow:(userId:number)=>void
+    unfollow: (userId: number) => void
+    follow: (userId: number) => void
     usersPage: Array<UserType>
     onPageChanged: (p: number) => void
     followingInProgress: number[]
-    togleIsFollowingProgress: (userId:number,isFetching: boolean) => void
+    togleIsFollowingProgress: (userId: number, isFetching: boolean) => void
 }
-
 
 let Users = (props: PropsType) => {
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -43,7 +39,8 @@ let Users = (props: PropsType) => {
                              className={s.userImg}/>
                     </NavLink>
                     </div>
-                    <div>{u.followed ? <button disabled={props.followingInProgress.some(id=>id===u.id)} onClick={() => {
+                    <div>{u.followed ?
+                        <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => {
                             props.unfollow(u.id)
                         }}>UnFollow</button> :
                         <button onClick={() => {
@@ -60,6 +57,5 @@ let Users = (props: PropsType) => {
         }
     </div>)
 }
-
 
 export default Users;

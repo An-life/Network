@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler} from 'react';
+import React from 'react';
 
 type PropsType = {
     status: string
@@ -6,7 +6,6 @@ type PropsType = {
 }
 
 export class ProfileStatus extends React.Component<PropsType> {
-
     state = {
         editMode: false,
         status: this.props.status
@@ -24,6 +23,7 @@ export class ProfileStatus extends React.Component<PropsType> {
             editMode: true
         })
     }
+
     onStatusChange = (e: any) => {
         this.setState({status: e.currentTarget.value})
     }

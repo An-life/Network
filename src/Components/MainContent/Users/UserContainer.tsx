@@ -12,8 +12,6 @@ import Users from './Users';
 import {Preloader} from '../../Common/Preloader';
 import {compose} from 'redux';
 import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
-import {Dialogs} from '../Dialogs/Dialogs';
-
 
 export type MapStateToPropsType = {
     usersPage: Array<UserType>
@@ -23,6 +21,7 @@ export type MapStateToPropsType = {
     isFetching: boolean
     followingInProgress: number[]
 }
+
 export type MapDispatchToPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
@@ -30,6 +29,7 @@ export type MapDispatchToPropsType = {
     togleIsFollowingProgress: (userId: number, isFetching: boolean) => void
     getUsersThunkCreator: (currentPage: number, pageSize: number) => void
 }
+
 export type APIType = {
     items: Array<UserType>
     totalCount: number
@@ -111,8 +111,7 @@ return{
     }
 }}*/
 
-
-
-export default compose <React.ComponentType>(connect(mapStateToProps, {
+export default compose<React.ComponentType>(connect(mapStateToProps, {
     follow, unfollow, setCurrentPage,
-    togleIsFollowingProgress, getUsersThunkCreator}), WithAuthRedirect)(UsersAIP)
+    togleIsFollowingProgress, getUsersThunkCreator
+}), WithAuthRedirect)(UsersAIP)

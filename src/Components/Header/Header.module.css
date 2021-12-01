@@ -1,16 +1,19 @@
-.header{
+.header {
     background-color: black;
     height: 100px;
 }
-.header img{
+
+.header img {
     height: 100px;
     width: 100px;
 }
-.login{
+
+.login {
     float: right;
 }
-.login a{
-    padding: 40px ;
+
+.login a {
+    padding: 40px;
     text-decoration: none;
     color: floralwhite;
     font-size: 30px;

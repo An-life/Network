@@ -1,4 +1,4 @@
-Link to deploy https://an-life.github.io/profile
+Link to deploy https://an-life.github.io/Network/
 
 # Getting Started with Create React App
 

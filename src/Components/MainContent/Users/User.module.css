@@ -1,8 +1,9 @@
-.userImg{
+.userImg {
     height: 50px;
     width: 50px;
     border-radius: 50%;
 }
-.selectedNum{
+
+.selectedNum {
     font-weight: bold;
 }
