@@ -1,9 +1,6 @@
 import {MessagesType} from '../App';
 
-type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >
-
-
-
+type ActionType = ReturnType<typeof sendMessageAC>
 
 let initialState = {
     dialogsData: [
@@ -12,7 +9,6 @@ let initialState = {
         {id: 3, name: 'Mike'},
         {id: 4, name: 'Dima'},
         {id: 6, name: 'Nino'},
-
     ],
     messageData: [
         {id: 1, message: 'Hi!'},
@@ -21,26 +17,15 @@ let initialState = {
         {id: 4, message: 'Love'},
         {id: 5, message: 'Look'},
     ],
-    newMessage: ''
-
 }
 
 export const messageReduser = (state: MessagesType = initialState, action: ActionType): MessagesType => {
-
     switch (action.type) {
-        case 'ADD_MESSAGE' :
-           return {
-                ...state,
-                newMessage: action.newText
-            };
-
         case'SEND_MESSAGE' :
-            let newMessageText = state.newMessage;
+            let newMessageText = action.newMessageBody;
             return {
                 ...state,
                 messageData: [...state.messageData, {id: 6, message: newMessageText}],
-                newMessage: ''
-
             }
         default:
             return state;
@@ -54,9 +39,7 @@ export const messageReduser = (state: MessagesType = initialState, action: Actio
      }
      return state;*/
 }
-export const addMessageAC = (newText: string) => {
-    return {type: 'ADD_MESSAGE', newText: newText} as const
-}
-export const sendMessageAC = () => {
-    return {type: 'SEND_MESSAGE'} as const
+
+export const sendMessageAC = (newMessageBody: string) => {
+    return {type: 'SEND_MESSAGE', newMessageBody} as const
 }

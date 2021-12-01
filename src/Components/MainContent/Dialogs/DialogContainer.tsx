@@ -1,21 +1,19 @@
 import React from 'react';
-import {addMessageAC, sendMessageAC} from '../../../redux/messageReduser';
+import {sendMessageAC} from '../../../redux/messageReduser';
 import {Dialogs} from './Dialogs';
 import {connect} from 'react-redux';
 import {MessagesType} from '../../../App';
 import {compose, Dispatch} from 'redux';
 import {AppStateType} from '../../../redux/StoreRedux';
-import {Redirect} from 'react-router/ts4.0';
 import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
-
 
 type MapStateToPropsType = {
     messageData: MessagesType
-    isAuth:boolean
+    isAuth: boolean
 }
+
 type MapDispatchToPropsType = {
-    addMessage: () => void
-    messageChange: (newText: string) => void
+    addMessage: (newMessageBody: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -24,16 +22,14 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isAuth: state.Auth.isAuth
     }
 }
+
 let mapDispatchToProps = (dispatch: Dispatch,): MapDispatchToPropsType => {
 
     return {
-        addMessage: () => {
-            dispatch(sendMessageAC())
-        },
-        messageChange: (newText: string) => {
-            dispatch(addMessageAC(newText))
+        addMessage: (newMessageBody: string) => {
+            dispatch(sendMessageAC(newMessageBody))
         }
     }
 }
 
-export const DialogContainer = compose <React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs)
+export const DialogContainer = compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), WithAuthRedirect)(Dialogs);

@@ -6,51 +6,42 @@ import {BrowserRouter} from 'react-router-dom';
 import {News} from './Components/MainContent/News/News';
 import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
-import {ActionType, AppStateType, StoreType} from './redux/StoreRedux';
+
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
 import UserContainer from './Components/MainContent/Users/UserContainer';
 import ProfileContainer from './Components/MainContent/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
 import {Login} from './Components/MainContent/login/login';
 
-
-
-
-type AppPropsType = {
-    store: StoreType
-    state: AppStateType
-    dispatch: (action: ActionType) => void
-}
 export type StateType = {
     postData: PostDataType
     messages: MessagesType
 }
+
 export type PostDataType = {
     posts: Array<PostType>
     newPostText: string
 }
+
 type PostType = {
     id: number,
     post: string,
     like: number
 }
+
 export type MessagesType = {
     dialogsData: Array<DialogsType>,
     messageData: Array<MessageType>
-    newMessage: string
 }
+
 type DialogsType = {
     id: number,
     name: string
 }
+
 type MessageType = {
     id: number,
     message: string
-}
-
-
-function UsersContainer() {
-    return null;
 }
 
 function App() {

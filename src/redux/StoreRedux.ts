@@ -1,27 +1,30 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
 import {addPost, profileReduser, updatePost} from './profileReduser';
-import {addMessageAC, messageReduser, sendMessageAC} from './messageReduser';
+import {messageReduser, sendMessageAC} from './messageReduser';
 import {follow, setUsers, unfollow, usersReducer} from './usersReduser';
 import {authReducer, setAuthUsersData} from './AuthReducer';
-import thunkMiddleware  from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 import {reducer as formReducer} from 'redux-form';
-export type RootReducerType = typeof rootRedusers;
+
+export type RootReducerType = typeof rootReducers;
 export type AppStateType = ReturnType<RootReducerType>
 export type StoreType = typeof store;
+export type ActionType = ReturnType<typeof sendMessageAC> |
+    ReturnType<typeof updatePost> | ReturnType<typeof addPost> | ReturnType<typeof follow> |
+    ReturnType<typeof unfollow> |
+    ReturnType<typeof setUsers> | ReturnType<typeof setAuthUsersData>
 
-let rootRedusers=combineReducers({
-    postData :profileReduser,
-    messageData :messageReduser,
+let rootReducers = combineReducers({
+    postData: profileReduser,
+    messageData: messageReduser,
     UsersPage: usersReducer,
-    Auth:authReducer,
-    form:formReducer
+    Auth: authReducer,
+    form: formReducer
 })
-export type ActionType=ReturnType<typeof addMessageAC >|ReturnType<typeof sendMessageAC >|
-    ReturnType<typeof updatePost >| ReturnType<typeof addPost >| ReturnType<typeof follow >|
-    ReturnType<typeof unfollow >|
-    ReturnType<typeof setUsers>|ReturnType<typeof setAuthUsersData>
 
-export let store=createStore(rootRedusers,applyMiddleware(thunkMiddleware ));
+
+
+export let store = createStore(rootReducers, applyMiddleware(thunkMiddleware));
 
 
 //@ts-ignore

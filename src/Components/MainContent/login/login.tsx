@@ -23,6 +23,8 @@ export const LoginForm=(props:any)=> {
         </form>
     </div>
 }
+
+
 const LoginReduxForm=reduxForm<FormDataType>({form:'login'})(LoginForm);
 
 export const Login=()=>{
