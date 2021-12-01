@@ -1,6 +1,6 @@
 import {MessagesType} from '../App';
 
-type ActionType = ReturnType<typeof sendMessageAC>
+export type ActionMessageType = ReturnType<typeof sendMessageAC>
 
 let initialState = {
     dialogsData: [
@@ -19,7 +19,7 @@ let initialState = {
     ],
 }
 
-export const messageReduser = (state: MessagesType = initialState, action: ActionType): MessagesType => {
+export const messageReduser = (state: MessagesType = initialState, action: ActionMessageType): MessagesType => {
     switch (action.type) {
         case'SEND_MESSAGE' :
             let newMessageText = action.newMessageBody;

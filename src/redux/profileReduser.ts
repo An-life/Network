@@ -1,7 +1,7 @@
 import {Dispatch} from 'redux';
 import {profileAPI, usersAPI} from '../API/api';
 
-type  ActionType = ReturnType<typeof addPost> |
+ export type  ActionProfileType = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> | ReturnType<typeof setStatus>
 
 type InitialStateType = {
@@ -54,7 +54,7 @@ let initialState = {
     newPostText:''
 }
 
-export const profileReduser = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const profileReduser = (state: InitialStateType = initialState, action: ActionProfileType): InitialStateType => {
     switch (action.type) {
         case 'ADD_POST': {
             let postMessage = {

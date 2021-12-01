@@ -5,6 +5,7 @@ import s from './Header.module.css'
 type PropsType = {
     isAuth: boolean
     login: string | null
+    logout:()=>void
 }
 
 export const Header = (props: PropsType) => {
@@ -14,7 +15,9 @@ export const Header = (props: PropsType) => {
                 src={'https://images.pexels.com/photos/1162361/pexels-photo-1162361.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'}
                 alt="logo"/>
             <div className={s.login}>
-                {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+                {props.isAuth ?
+                    <div>{props.login} - <button onClick={props.logout}>Log out</button></div> :
+                    <NavLink to={'/login'}>Login</NavLink>}
 
             </div>
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import {AppStateType} from '../../redux/StoreRedux';
 import {Header} from './Header';
 import {connect} from 'react-redux';
-import {getAuthUsersData} from '../../redux/AuthReducer';
+import {getAuthUsersData, logout} from '../../redux/AuthReducer';
 
 export type DataType = {
     id: number
@@ -24,7 +24,7 @@ class HeaderApi extends React.Component<MapStateToPropsType & MapDispatchToProps
         this.props.getAuthUsersData();
     }
     render() {
-        return <Header {...this.props}/>;
+        return <Header {...this.props} logout={logout}/>;
     }
 }
 
@@ -34,4 +34,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => (
         login: state.Auth.login
     })
 
-export default connect(mapStateToProps, {getAuthUsersData})(HeaderApi);
+export default connect(mapStateToProps, {getAuthUsersData, logout})(HeaderApi);

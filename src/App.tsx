@@ -6,12 +6,11 @@ import {BrowserRouter} from 'react-router-dom';
 import {News} from './Components/MainContent/News/News';
 import {Music} from './Components/MainContent/Music/Music';
 import {Settings} from './Components/MainContent/Settings/Settings';
-
 import {DialogContainer} from './Components/MainContent/Dialogs/DialogContainer';
 import UserContainer from './Components/MainContent/Users/UserContainer';
 import ProfileContainer from './Components/MainContent/Profile/ProfileContainer';
 import HeaderContainer from './Components/Header/HeaderContainer';
-import {Login} from './Components/MainContent/login/login';
+import Login from './Components/MainContent/login/login';
 
 export type StateType = {
     postData: PostDataType
@@ -55,7 +54,7 @@ function App() {
                         <Route path="/profile/:userId?" render={() => <ProfileContainer/>}/>
                         <Route path="/dialogs" render={() => <DialogContainer/>}/>
                         <Route path="/users" render={() => <UserContainer/>}/>
-                        <Route path="/login" render={() => <Login/>}/>
+                        <Route path="/login" render={() => <Login />}/>
                         <Route path="/news" render={() => <News/>}/>
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/settings" render={() => <Settings/>}/>

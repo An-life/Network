@@ -1,7 +1,7 @@
 import {usersAPI} from '../API/api';
 import {Dispatch} from 'redux';
 
-type  ActionType =
+export type  ActionUserType =
     FollowACActionType
     | UnFollowACActionType
     | SetUsersACActionType
@@ -80,7 +80,7 @@ let initialState = {
     followingInProgress: []
 }
 
-export const usersReducer = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
+export const usersReducer = (state: InitialStateType = initialState, action: ActionUserType): InitialStateType => {
     switch (action.type) {
         case'FOLLOW':
             return {
