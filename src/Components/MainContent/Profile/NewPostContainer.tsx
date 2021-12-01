@@ -1,5 +1,5 @@
 import React from 'react';
-import {addPost, updatePost} from '../../../redux/profileReduser';
+import {addPost} from '../../../redux/profileReduser';
 import {NewPost} from './NewPost';
 import {AppStateType} from '../../../redux/StoreRedux';
 import {connect} from 'react-redux';
@@ -10,8 +10,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    addPost: () => void
-    updatePost: (newText: string) => void
+    addPost:( newPostText:string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -22,11 +21,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        addPost: () => {
-            dispatch(addPost());
-        },
-        updatePost: (newText: string) => {
-            dispatch(updatePost(newText));
+        addPost: ( newPostText:string) => {
+            dispatch(addPost( newPostText));
         }
     }
 }

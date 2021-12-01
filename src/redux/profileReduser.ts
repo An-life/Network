@@ -1,14 +1,14 @@
 import {Dispatch} from 'redux';
 import {profileAPI, usersAPI} from '../API/api';
 
-type  ActionType = ReturnType<typeof addPost> | ReturnType<typeof updatePost> |
+type  ActionType = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> | ReturnType<typeof setStatus>
 
 type InitialStateType = {
     posts: Array<PostType>
-    newPostText: string
     profile: ProfileType | null
     status: string
+    newPostText:string
 }
 
 export type ProfileType = {
@@ -49,9 +49,9 @@ let initialState = {
         {id: 2, post: 'Yo!', like: 4},
         {id: 3, post: 'Like!', like: 1}
     ],
-    newPostText: '',
     profile: null,
-    status: ''
+    status: '',
+    newPostText:''
 }
 
 export const profileReduser = (state: InitialStateType = initialState, action: ActionType): InitialStateType => {
@@ -59,15 +59,11 @@ export const profileReduser = (state: InitialStateType = initialState, action: A
         case 'ADD_POST': {
             let postMessage = {
                 id: 2,
-                post: state.newPostText,
+                post: action.newPostText,
                 like: 3
             };
             let stateCopy = {...state, posts: [...state.posts, postMessage], newPostText: ''};
             return stateCopy;
-        }
-
-        case 'UPDATE_POST': {
-            return {...state, newPostText: action.newText};
         }
         case 'SET_USERPROFILE': {
             return {...state, profile: action.profile}
@@ -78,7 +74,6 @@ export const profileReduser = (state: InitialStateType = initialState, action: A
                 status: action.status
             }
         }
-
         default:
             return state;
     }
@@ -94,12 +89,9 @@ export const profileReduser = (state: InitialStateType = initialState, action: A
        state.newPostText=action.newText;}
     return state;*/
 }
-export const updatePost = (newText: string) => {
-    return {type: 'UPDATE_POST', newText: newText} as const
-}
 
-export const addPost = () => {
-    return {type: 'ADD_POST'} as const
+export const addPost = ( newPostText:string) => {
+    return {type: 'ADD_POST', newPostText} as const
 }
 
 export const setUserProfile = (profile: ProfileType) => {

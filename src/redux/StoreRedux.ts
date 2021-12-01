@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, createStore} from 'redux';
-import {addPost, profileReduser, updatePost} from './profileReduser';
+import {addPost, profileReduser} from './profileReduser';
 import {messageReduser, sendMessageAC} from './messageReduser';
 import {follow, setUsers, unfollow, usersReducer} from './usersReduser';
 import {authReducer, setAuthUsersData} from './AuthReducer';
@@ -10,7 +10,7 @@ export type RootReducerType = typeof rootReducers;
 export type AppStateType = ReturnType<RootReducerType>
 export type StoreType = typeof store;
 export type ActionType = ReturnType<typeof sendMessageAC> |
-    ReturnType<typeof updatePost> | ReturnType<typeof addPost> | ReturnType<typeof follow> |
+    ReturnType<typeof addPost> | ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |
     ReturnType<typeof setUsers> | ReturnType<typeof setAuthUsersData>
 
