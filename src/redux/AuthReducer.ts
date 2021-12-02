@@ -1,8 +1,7 @@
 import {Dispatch} from 'redux';
 import {authAPI} from '../API/api';
-import {ThunkAction} from 'redux-thunk';
-import {AppStateType, AppThunk} from './StoreRedux';
-import {FormAction} from 'redux-form';
+import { AppThunk} from './StoreRedux';
+import { stopSubmit} from 'redux-form';
 
 export type ActionAuthType=ReturnType<typeof setAuthUsersData>
 
@@ -60,8 +59,10 @@ export const LoginTC=(email:string,password:string, rememberMe:boolean):AppThunk
             // .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthUsersData())
+            }else {
+                let message=response.data.data.messages.length>0 ? response.data.data.messages[0]:'Some error'
+                dispatch(stopSubmit('login',{_error:message}));
             }
-        // });
     }
 }
 

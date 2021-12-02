@@ -16,12 +16,15 @@ type ConnectedPropsType = MapStateToPropsType & MapDispatchToPropsType & RouteCo
 type  MapStateToPropsType = {
     profile: ProfileType | null
     status: string
+    autorizedUserId:number|null
+    isAuth:boolean
 }
 
 type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatus: (status: string) => void
+
 }
 
 export type APIType = ProfileType
@@ -30,7 +33,7 @@ class ProfileContainer extends React.Component<ConnectedPropsType, AppStateType>
     componentDidMount() {
         let userId = this.props.match.params.userId
         if (!userId) {
-            userId = '18940';
+            userId = String(this.props.autorizedUserId);
         }
         this.props.getUserProfile(userId);
         this.props.getStatus(userId);
@@ -46,7 +49,9 @@ class ProfileContainer extends React.Component<ConnectedPropsType, AppStateType>
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.postData.profile,
-    status: state.postData.status
+    status: state.postData.status,
+    autorizedUserId:state.Auth.id,
+    isAuth:state.Auth.isAuth
 })
 
 export default compose<React.ComponentType>(connect(mapStateToProps, {

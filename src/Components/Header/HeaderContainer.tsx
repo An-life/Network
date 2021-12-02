@@ -8,6 +8,7 @@ export type DataType = {
     id: number
     email: string
     login: string
+    messages:Array<string>
 }
 
 type MapDispatchToPropsType = {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import {UserType} from '../redux/usersReduser';
-import {ContactsType, PhotoType, ProfileType} from '../redux/profileReduser';
+import {ContactsType, PhotoType} from '../redux/profileReduser';
 import {DataType} from '../Components/Header/HeaderContainer';
 
 type APIStatusType = string
@@ -59,9 +59,9 @@ export const authAPI = {
         return instance.get<APIType>(`auth/me`)
     },
     login(email:string,password:string, rememberMe:boolean){
-        return instance.post<APIType>(`auth/ligin`,{email, password, rememberMe})
+        return instance.post<APIType>(`auth/login`,{email, password, rememberMe})
     },
     logout(){
-        return instance.delete<APIType>(`auth/ligin`)
+        return instance.delete<APIType>(`auth/login`)
     }
 }
