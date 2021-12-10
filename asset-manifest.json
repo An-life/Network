@@ -1,23 +1,24 @@
 {
   "files": {
-    "main.css": "/Network/static/css/main.7ec88b25.chunk.css",
-    "main.js": "/Network/static/js/main.74de21a9.chunk.js",
-    "main.js.map": "/Network/static/js/main.74de21a9.chunk.js.map",
-    "runtime-main.js": "/Network/static/js/runtime-main.898be531.js",
-    "runtime-main.js.map": "/Network/static/js/runtime-main.898be531.js.map",
-    "static/js/2.9f244799.chunk.js": "/Network/static/js/2.9f244799.chunk.js",
-    "static/js/2.9f244799.chunk.js.map": "/Network/static/js/2.9f244799.chunk.js.map",
-    "static/js/3.50a125bf.chunk.js": "/Network/static/js/3.50a125bf.chunk.js",
-    "static/js/3.50a125bf.chunk.js.map": "/Network/static/js/3.50a125bf.chunk.js.map",
+    "main.css": "/Network/static/css/main.9b724d12.chunk.css",
+    "main.js": "/Network/static/js/main.8169bf1f.chunk.js",
+    "main.js.map": "/Network/static/js/main.8169bf1f.chunk.js.map",
+    "runtime-main.js": "/Network/static/js/runtime-main.47dd3518.js",
+    "runtime-main.js.map": "/Network/static/js/runtime-main.47dd3518.js.map",
+    "static/js/2.47a47955.chunk.js": "/Network/static/js/2.47a47955.chunk.js",
+    "static/js/2.47a47955.chunk.js.map": "/Network/static/js/2.47a47955.chunk.js.map",
+    "static/js/3.111d5d96.chunk.js": "/Network/static/js/3.111d5d96.chunk.js",
+    "static/js/3.111d5d96.chunk.js.map": "/Network/static/js/3.111d5d96.chunk.js.map",
     "index.html": "/Network/index.html",
-    "static/css/main.7ec88b25.chunk.css.map": "/Network/static/css/main.7ec88b25.chunk.css.map",
-    "static/js/2.9f244799.chunk.js.LICENSE.txt": "/Network/static/js/2.9f244799.chunk.js.LICENSE.txt",
-    "static/media/blank-profile-picture-973460_960_720.efadb13d.webp": "/Network/static/media/blank-profile-picture-973460_960_720.efadb13d.webp"
+    "static/css/main.9b724d12.chunk.css.map": "/Network/static/css/main.9b724d12.chunk.css.map",
+    "static/js/2.47a47955.chunk.js.LICENSE.txt": "/Network/static/js/2.47a47955.chunk.js.LICENSE.txt",
+    "static/media/blank-profile-picture-973460_960_720.efadb13d.webp": "/Network/static/media/blank-profile-picture-973460_960_720.efadb13d.webp",
+    "static/media/loader.fc860661.gif": "/Network/static/media/loader.fc860661.gif"
   },
   "entrypoints": [
-    "static/js/runtime-main.898be531.js",
-    "static/js/2.9f244799.chunk.js",
-    "static/css/main.7ec88b25.chunk.css",
-    "static/js/main.74de21a9.chunk.js"
+    "static/js/runtime-main.47dd3518.js",
+    "static/js/2.47a47955.chunk.js",
+    "static/css/main.9b724d12.chunk.css",
+    "static/js/main.8169bf1f.chunk.js"
   ]
 }
