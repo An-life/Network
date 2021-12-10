@@ -2,17 +2,14 @@ import React from 'react';
 import {AppStateType} from '../../redux/StoreRedux';
 import {Header} from './Header';
 import {connect} from 'react-redux';
-import {getAuthUsersData, logout} from '../../redux/AuthReducer';
+import {logout} from '../../redux/AuthReducer';
 
+//types
 export type DataType = {
     id: number
     email: string
     login: string
-    messages:Array<string>
-}
-
-type MapDispatchToPropsType = {
-    getAuthUsersData: () => void
+    messages: Array<string>
 }
 
 type MapStateToPropsType = {
@@ -20,19 +17,16 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 
-class HeaderApi extends React.Component<MapStateToPropsType & MapDispatchToPropsType, AppStateType> {
-    componentDidMount() {
-        this.props.getAuthUsersData();
-    }
+//component
+class HeaderApi extends React.Component<MapStateToPropsType, AppStateType> {
     render() {
         return <Header {...this.props} logout={logout}/>;
     }
 }
-
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => (
     {
         isAuth: state.Auth.isAuth,
         login: state.Auth.login
     })
 
-export default connect(mapStateToProps, {getAuthUsersData, logout})(HeaderApi);
+export default connect(mapStateToProps, {logout})(HeaderApi);
