@@ -12,6 +12,13 @@ import Users from './Users';
 import {Preloader} from '../../Common/Preloader';
 import {compose} from 'redux';
 import {WithAuthRedirect} from '../../../HOC/WithAuthRedirect';
+import {
+    GetCurrentPageCount, GetFollowingInProgress,
+    GetIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from '../../../redux/userSelectors';
 
 export type MapStateToPropsType = {
     usersPage: Array<UserType>
@@ -81,6 +88,17 @@ class UsersAIP extends React.Component<MapStateToPropsType & MapDispatchToPropsT
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
+        usersPage:getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount:getTotalUsersCount(state),
+        currentPage: GetCurrentPageCount(state),
+        isFetching:GetIsFetching(state) ,
+        followingInProgress:GetFollowingInProgress(state)
+    }
+}
+
+/*let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
         usersPage: state.UsersPage.users,
         pageSize: state.UsersPage.pageSize,
         totalUsersCount: state.UsersPage.totalUsersCount,
@@ -88,7 +106,7 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         isFetching: state.UsersPage.isFetching,
         followingInProgress: state.UsersPage.followingInProgress
     }
-}
+}*/
 /*let mapDispatchToProps=(dispatch:Dispatch):MapDispatchToPropsType=>{
 return{
     follow:(userID:number)=>{
