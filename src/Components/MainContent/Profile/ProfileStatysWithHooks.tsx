@@ -6,17 +6,19 @@ type PropsType = {
     updateStatus: (status: string) => void
 }
 
-export const ProfileStatusWithHooks=(props:PropsType)=>{
-       let stateWithSetState=useState(false)
+export const ProfileStatusWithHooks = (props: PropsType) => {
+    let stateWithSetState = useState(false)
+    let editMode = stateWithSetState[0];
+    let setEditMode = stateWithSetState[1];
 
-        return (<div>
-            {true &&
-            <div><span >{props.status || 'No status'}</span></div>}
+    return (<div>
+        {!editMode &&
+        <div><span>{props.status || 'No status'}</span></div>}
 
-            {false &&
-            <div><input  autoFocus={true}
-                        /></div>}
-        </div>)
+        {editMode &&
+        <div><input autoFocus={true}
+        /></div>}
+    </div>)
 
 
 }
