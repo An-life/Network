@@ -1,7 +1,8 @@
 import React from 'react';
 import {Preloader} from '../../Common/Preloader';
 import {ProfileType} from '../../../redux/profileReduser';
-import {ProfileStatus} from './ProfileStatus';
+
+import {ProfileStatusWithHooks} from "./ProfileStatysWithHooks";
 
 type PropsType = {
     profile: ProfileType | null
@@ -15,6 +16,6 @@ export let ProfileInfo = (props: PropsType) => {
     }
     return <div>
         <img src={props.profile.photos.large}/>
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+        <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
     </div>
 }
