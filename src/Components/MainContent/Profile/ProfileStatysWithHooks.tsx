@@ -7,17 +7,25 @@ type PropsType = {
 }
 
 export const ProfileStatusWithHooks = (props: PropsType) => {
-    let stateWithSetState = useState(false)
-    let editMode = stateWithSetState[0];
-    let setEditMode = stateWithSetState[1];
+    let [editMode,setEditMode ] = useState(false)
+    let [status,setStatus]=useState(props.status)
+    const activateMode=()=>{
+        setEditMode(true)
+    }
+    const disActivateEditMode = () => {
+        setEditMode(false)
+       props.updateStatus(status)
+    }
+    const onStatusChange = (e: any) => {
+        setStatus( e.currentTarget.value);
+    }
 
     return (<div>
         {!editMode &&
-        <div><span>{props.status || 'No status'}</span></div>}
+        <div><span onDoubleClick={activateMode}>{props.status || 'No status'}</span></div>}
 
         {editMode &&
-        <div><input autoFocus={true}
-        /></div>}
+        <div><input onChange={onStatusChange} autoFocus={true} onBlur={disActivateEditMode} value={status}/></div>}
     </div>)
 
 
